@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Aseguramos que el root ocupe toda la pantalla*/
+html, body, #root{
+  height: 100%
+}
+
+/* Aplicamos estilos base: Fondo neutro y texto legible*/
+body { 
+  @apply bg-gray-50 text-gray-800
+}
+
+/*Helper para tarjetas y layouts (puedes extender segun necesites)*/
+.container {
+  @apply max-w-6x1 mx-auto px-4
+}
