@@ -20,14 +20,14 @@ function App() {
     currentPage,
   } = useAppSelector((state) => state.characters);
 
-  // Cargar personajes al inicio
+  // Cargar personajes al inicio :vvv no olvidar perro
   useEffect(() => {
     if (status === 'idle') {
       dispatch(fetchCharacters());
     }
   }, [status, dispatch]);
 
-  // Filtrar por búsqueda
+  // Filtrar por búsqueda :v no olvidar perro
   const filteredCharacters = Array.isArray(allCharacters)
     ? allCharacters.filter((char) => {
       const characterName = char.name.toLowerCase().trim(); // Elimina espacios al inicio y final
@@ -44,7 +44,6 @@ function App() {
   if (status === 'failed') return <Error message={error!} />;
 
   return (
-    
     <div className="min-h-screen bg-blue-100 p-4 md:p-8">
       <header className="flex justify-between items-center mb-5 px-20">
 
