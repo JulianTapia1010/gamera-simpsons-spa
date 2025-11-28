@@ -44,6 +44,7 @@ function App() {
   if (status === 'failed') return <Error message={error!} />;
 
   return (
+    
     <div className="min-h-screen bg-blue-100 p-4 md:p-8">
       <header className="flex justify-between items-center mb-5 px-20">
 
@@ -83,7 +84,7 @@ function App() {
         <p className="text-center text-gray-500 mt-8">No se encontraron personajes.</p>
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
             {currentCharacters.map((char) => (
               <CharacterCard key={char.name} character={char} />
             ))}
