@@ -1,9 +1,7 @@
-import { format } from 'date-fns'
-import { es } from 'date-fns/locale'
+import { format } from 'date-fns';
+import { es } from 'date-fns/locale';
 
-export function formatBirthdate(iso?: string | null) {
-  if (!iso) return 'Desconocido'
-  try { return format(new Date(iso), "d 'de' MMMM 'de' yyyy", { locale: es }) }
-  catch { return 'Desconocido' }
-}
-
+export const formatDateSpanish = (dateString: string): string => {
+  const date = new Date(dateString);
+  return format(date, 'd \'de\' MMMM \'de\' yyyy', { locale: es });
+};

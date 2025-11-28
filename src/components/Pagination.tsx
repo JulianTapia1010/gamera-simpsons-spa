@@ -1,17 +1,39 @@
-import React from 'react'
-import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
-import { setPage } from '../features/characterSlice'
+interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+}
 
+export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
+  if (totalPages <= 1) return null;
 
-export default function Pagination(){
-  const dispatch = useAppDispatch()
-  const page = useAppSelector(s => s.characters.page)
-  const totalPages = useAppSelector(s => Math.max(1, Math.ceil(s.characters.total / s.characters.perPage)))
   return (
-    <div className="flex gap-2 justify-center mt-4">
-      <button onClick={()=>dispatch(setPage(page-1))} disabled={page<=1} className="px-3 py-1 border rounded">Anterior</button>
-      <span className="px-3 py-1">Página {page} / {totalPages}</span>
-      <button onClick={()=>dispatch(setPage(page+1))} disabled={page>=totalPages} className="px-3 py-1 border rounded">Siguiente</button>
+    <div className="flex justify-center mt-8 space-x-2">
+      <button
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+        className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
+      >
+        Anterior
+      </button>
+
+      {[...Array(totalPages)].map((_, i) => (
+        <button
+          key={i + 1}
+          onClick={() => onPageChange(i + 1)}
+          className={`px-3 py-2 rounded ${currentPage === i + 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+        >
+          {i + 1}
+        </button>
+      ))}
+
+      <button
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
+      >
+        Siguiente
+      </button>
     </div>
-  )
+  );
 }
